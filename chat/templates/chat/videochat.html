@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+      {%load staticfiles%}
+        <meta charset="UTF-8">
+     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <script src="{%static 'chat/webrtc.js'%}"></script>
+    </head>
+
+    <body>
+    <div class="w3-container w3-white">
+		<img src="{%static 'chat/chat2.jpg'%}" style="height:50px; width:auto;">
+	</div>
+	<div class="w3-bar w3-flat-wet-asphalt w3-padding-16 w3-card-4">
+		<div class="w3-content">
+		<a href="{%url 'list'%}" class="w3-bar-item w3-button">Home</a>
+		<a href="#" class="w3-bar-item w3-button">About Us</a>
+            <a href="{%url 'lt'%}" class="w3-bar-item w3-button w3-right">Logout</a>
+
+		<a href="#" class="w3-bar-item w3-button w3-right">Contact Us</a>
+		<a href="#" class="w3-bar-item w3-button w3-right">FAQ</a>
+
+        </div>
+	</div>
+<br>
+    <div class="w3-center w3-xxlarge">GroupName: {{room.name}}</div>
+<div class="w3-center w3-xxlarge" id="msg">{{room.id}}</div>
+
+    <div class="w3-center">
+    <br>
+        <video id="localVideo" autoplay muted style="width:40%;height:350px;"></video>
+        <video id="remoteVideo" autoplay style="width:40%;height:350px;"></video>
+
+
+        <div id="rv"></div>
+        <br />
+    </div>
+<div class="w3-center">
+        <button class="btn btn-primary"id="start" onclick="start(true)" >Start Video</button>
+</div>
+        <script type="text/javascript">
+            pageReady();
+        </script>
+    </body>
+</html>

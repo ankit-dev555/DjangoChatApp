@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {%load staticfiles%}
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body class="w3-flat-clouds">
+	<div class="w3-container w3-white">
+		<img src="{%static 'chat/chat2.jpg'%}" style="height:50px; width:auto;">
+	</div>
+	<div class="w3-bar w3-flat-wet-asphalt w3-padding w3-card-4">
+		<div class="w3-content">
+		<a href="#" class="w3-bar-item w3-button">Home</a>
+		<a href="#" class="w3-bar-item w3-button">About Us</a>
+		<a href="#" class="w3-bar-item w3-button w3-right">Contact Us</a>
+		<a href="#" class="w3-bar-item w3-button w3-right">FAQ</a>
+		</div>
+	</div>
+
+	<div class="w3-content w3-center w3-padding-32">
+		<h1>Experience the real time communication</h1>
+	</div>
+
+	<div class="w3-row w3-content" style="hieght:700px;" >
+		<div class="w3-twothird"><img class="myslides w3-block w3-animate-left"src="{%static 'chat/chat1-1.jpg'%}" style="height:400px;width:100%;"/>
+
+		<img src="{%static 'chat/chat5.jpg'%}" class="myslides w3-animate-left w3-block " style="width:100%;height:400px;"/>
+		<img src="{%static 'chat/chat4.png'%}" class="myslides w3-animate-left w3-block " style="width:100%;height:400px;"/>
+
+        </div>
+		<div class="w3-third w3-container">
+
+			<div>
+				{%if error is 1%}
+				<b class="w3-text-red">Incorrect credentials</b>
+				{%endif%}
+			{%if error is 2%}
+				<b class="w3-text-red">User already exists</b>
+				{%endif%}
+				{%if error is 3%}
+				<b class="w3-text-red">fil all the fields</b>
+				{%endif%}
+
+
+			</div>
+
+			<span class="w3-left">
+				<button id="log1" onclick="document.getElementById('f1').style.display='block';" class="w3-margin-right w3-btn w3-flat-wet-asphalt w3-padding-large w3-hover-blue" >Login</button>
+			</span>
+			<span class="w3-right" >
+			<button id="log2" onclick="document.getElementById('f2').style.display='block';" class="w3-btn w3-flat-wet-asphalt w3-padding-large w3-hover-blue" >Sign Up</button>
+		</span>
+		</div>
+
+
+			<div class="w3-modal" id="f1">
+		<div class="w3-card-4 w3-content w3-display-container" style="width:50%" >
+            <span class="w3-button w3-display-topright" onclick="document.getElementById('f1').style.display='none';"><b>X</b></span>
+		<form  class="w3-container w3-white w3-padding-16" action="" method="post">
+            {%csrf_token%}
+			 <input class="w3-input" type="hidden"  name="type" value="2">
+
+            <p><label>Your Email or Username</label>
+			<input class="w3-input" type="text" placeholder="Username" name="Username"></p>
+
+			<p><label>Password</label>
+			<input class="w3-input" type="password" placeholder="Password" name="Password"></p>
+<div class="w3-center">
+			<button class="w3-flat-wet-asphalt w3-button ">LOG IN</button>
+</div>
+    	</form>
+		</div>
+</div>
+		<div class="w3-modal" id="f2">
+		<div class="w3-card-4 w3-content w3-display-container" style="width:50%;">
+            <span class="w3-button w3-display-topright" onclick="document.getElementById('f2').style.display='none';"><b>X</b></span>
+		<form class="w3-container w3-white w3-padding-16" action="" method="post">
+
+        {%csrf_token%}
+            <input class="w3-input" type="hidden"  name="type" value="1"></p>
+
+       	<p><label>Choose Your Username</label>
+			<input class="w3-input" type="text" placeholder="Username" name="Username"></p>
+			<p><label>Email</label>
+			<input class="w3-input" type="text" placeholder="email" name="email"></p>
+
+            <p><label>Create a Password</label>
+			<input class="w3-input" type="password" placeholder="Password" name="Password"></p>
+			<button class="w3-flat-wet-asphalt w3-button w3-right">REGISTER</button>
+
+
+        </form>
+		</div>
+</div>
+
+		</div>
+	</div>
+
+<script>
+
+var slideIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("myslides");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > x.length) {slideIndex = 1}
+    x[slideIndex-1].style.display = "block";
+    setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+
+
+
+
+</script>
+
+<br><br><br>
+<div class="w3-container w3-flat-wet-asphalt w3-center">
+<p>Messaging apps are surging in popularity. The past few years have brought apps like WhatsApp, Telegram, Signal, and Line.
+
+People seem to prefer chat-based applications because they allow for real-time interaction. They also add a personal touch to the experience.<br>Powered by W3.CSS.</p>
+</div>
+
+</body>
+</html>

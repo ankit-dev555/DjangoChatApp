@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {%load staticfiles%}
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <title></title>
+</head>
+
+<body>
+
+<div class="w3-container w3-white">
+		<img src="{%static 'chat/chat2.jpg'%}" style="height:50px; width:auto;">
+	</div>
+	<div class="w3-bar w3-flat-wet-asphalt w3-padding-16 w3-card-4">
+		<div class="w3-content">
+		<a href="#" class="w3-bar-item w3-button">Home</a>
+		<a href="#" class="w3-bar-item w3-button">About Us</a>
+            <a href="{%url 'lt'%}" class="w3-bar-item w3-button w3-right">Logout</a>
+
+		<a href="#" class="w3-bar-item w3-button w3-right">Contact Us</a>
+		<a href="#" class="w3-bar-item w3-button w3-right">FAQ</a>
+		</div>
+	</div>
+<br><br>
+<div class="w3-row w3-content">
+<div class="w3-half w3-container ">
+<div class="w3-card-4 w3-margin-right">
+    <div class="w3-center ">
+        <br>
+
+    <h4><b>Available groups</b></h4>
+        {%if error is 1%}
+        <b class="w3-red">password for room is incorrect</b>
+
+        {%endif%}
+</div>
+    <div class="w3-center ">
+
+    {%for room in rooms %}
+
+    <Button class="w3-btn w3-block w3-flat-clouds  w3-hover-cyan w3-padding-16" id="{{room.id}}"  onclick="var x=document.getElementsByClassName(this.id);console.log(x.length);x[0].classList.toggle('w3-hide');"><b  >{{room.name}}</b></Button><br>
+<div class="w3-hide {{room.id}}" >
+
+    <form action="" method="post" >
+        {%csrf_token%}
+
+        <label>Enter the password</label>
+<br>
+            <input type="hidden" name="type" value="1">
+        <input type="hidden" name="id" value="{{room.id}}">
+    <input type="password" name="pass"  class="w3-input w3-border" placeholder="Enter the password for room">
+       <br>
+        <Button class="btn btn-primary" type="submit">Enter</Button>
+<br>
+        </form>
+</div>
+{%endfor%}
+</div>
+</div>
+</div>
+
+    <div class="w3-half w3-content">
+        <div class="w3-xlarge">Create new room</div><br>
+            <form action="" class="w3-card-4 w3-padding-16 w3-container"method="post">
+            {%csrf_token%}
+            <input type="hidden" name="type" value="2">
+
+            <p><label>Enter the name of room</label>
+            <input class="w3-input" type="text" name="name">
+            </p>
+        <p><label>Enter the password</label>
+            <input class="w3-input" type="password" name="pass">
+            </p>
+            <Button class="btn btn-primary " type="submit">SUBMIT</Button>
+
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
